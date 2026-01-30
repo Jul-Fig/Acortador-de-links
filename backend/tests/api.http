@@ -1,0 +1,48 @@
+### Variables
+@baseUrl = http://localhost:3000/api
+@shortCode = abc123
+
+### Health Check
+GET {{baseUrl}}/health
+
+### Crear URL Corta
+POST {{baseUrl}}/shorten
+Content-Type: application/json
+
+{
+  "url": "https://www.example.com/very/long/url"
+}
+
+### Obtener URL Original
+GET {{baseUrl}}/shorten/{{shortCode}}
+
+### Actualizar URL
+PUT {{baseUrl}}/shorten/{{shortCode}}
+Content-Type: application/json
+
+{
+  "url": "https://www.updated-url.com"
+}
+
+### Eliminar URL
+DELETE {{baseUrl}}/shorten/{{shortCode}}
+
+### Obtener Estadísticas
+GET {{baseUrl}}/shorten/{{shortCode}}/stats
+
+### Probar validación - URL inválida
+POST {{baseUrl}}/shorten
+Content-Type: application/json
+
+{
+  "url": "invalid-url"
+}
+
+### Probar validación - URL faltante
+POST {{baseUrl}}/shorten
+Content-Type: application/json
+
+{}
+
+### Probar 404 - Short code inexistente
+GET {{baseUrl}}/shorten/noexiste

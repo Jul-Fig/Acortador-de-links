@@ -1,0 +1,13 @@
+// obtener informacion de pokemon
+GET http://localhost:1234/pokemon/ditto
+// crear un pokeom
+POST http://localhost:1234/pokemon 
+Content-Type: application/json
+
+{
+    "name": "ditto",
+    "type":"normal",
+    "moves":[
+        "trasnform"
+    ]
+}
