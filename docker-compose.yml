@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: url-shortener-db
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: url-shortener
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongodb/init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - url-shortener-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: url-shortener-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - MONGODB_URI=mongodb://mongodb:27017/url-shortener
+      - FRONTEND_URL=http://localhost:4200
+      - NODE_ENV=production
+    depends_on:
+      - mongodb
+    networks:
+      - url-shortener-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: url-shortener-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - url-shortener-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  url-shortener-network:
+    driver: bridge
