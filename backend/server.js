@@ -27,6 +27,7 @@ app.use(express.urlencoded({extended: true}))
 mongoose.connect(
     process.env.MONGODB_URL || 'mongodb://localhost:27017/url-shortener',
 )
+
 .then(()=> console.log('mongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err))
 
@@ -44,7 +45,7 @@ app.use((req,res)=>{
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, ()=>{
-    console.log(`Server runnig on port http://localhost:${PORT}`); 
+    console.log(`Server running on port http://localhost:${PORT}`); 
 })
 
 module.exports = app

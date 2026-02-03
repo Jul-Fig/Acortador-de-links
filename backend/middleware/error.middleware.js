@@ -20,7 +20,7 @@ function errorHandler(err,req,res,next){
 
         message: process.env.NODE_ENV ==='development'? err.message:undefined
     })
-
+    next()
 }
 
 module.exports = errorHandler

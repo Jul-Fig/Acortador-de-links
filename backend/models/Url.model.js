@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const urlSchema =   new mongoose.Schema({
     url:{
         type:String,
-        required:[true, 'Urel required'],
+        required:[true, 'Url required'],
         trim:true,
         validate: {
 

@@ -5,7 +5,7 @@ function validateUrl(req,res,next){
         re.status(400).json({error:'URL is required'})
     }
 
-   if(typeof url !=='string' || utl.trim().length ===0){
+   if(typeof url !=='string' || url.trim().length ===0){
     res.status(400).json({error:'URL must be a non-empty string'})
    }
 
@@ -22,6 +22,8 @@ function validateUrl(req,res,next){
 }
 
 function validateShortCode(req,res,next){
+    console.log('✅ Ingresó a validateShortCode');
+    console.log('shortCode recibido:', req.params.shortCode);
     const {shortCode} = req.params
     if(!shortCode){
         return res.status(400).json({error:'Short code is required'})
@@ -30,6 +32,6 @@ function validateShortCode(req,res,next){
     if(!/^[a-zA-Z0-9]+$/.test(shortCode)){
         res.status(400).json({error:'Invalid short code format'})
     }
-    next()
+    next();
 }
 module.exports={validateUrl,validateShortCode}

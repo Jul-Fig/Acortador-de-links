@@ -19,7 +19,7 @@ class UrlController {
             }
 
             if(attempts === maxAttempts){
-                return res.status(500).json({error:'Could not generate unique short code'})
+                return res.status(500).json({ error:'Could not generate unique short code'})
             }
             const newUrl = new Url({
                 url,
@@ -45,7 +45,7 @@ class UrlController {
         }
         res.status(200).json(url.toJSON())
     } catch (error) {
-        next(error)
+        next (error)
     }
 }
 
@@ -79,7 +79,7 @@ class UrlController {
             }
             res.status(204).send()
         } catch(error){
-            next(error)
+            next (error)
         }
     }
 
@@ -96,6 +96,7 @@ class UrlController {
         } catch (error) {
             
         }
+        next()
     }
 }
 module.exports =new UrlController()
