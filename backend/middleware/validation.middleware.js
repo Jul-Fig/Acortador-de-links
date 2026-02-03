@@ -2,7 +2,7 @@ function validateUrl(req,res,next){
     const {url}= req.body
 
     if(!url){
-        re.status(400).json({error:'URL is required'})
+        res.status(400).json({error:'URL is required'})
     }
 
    if(typeof url !=='string' || url.trim().length ===0){
@@ -30,7 +30,7 @@ function validateShortCode(req,res,next){
 
     }
     if(!/^[a-zA-Z0-9]+$/.test(shortCode)){
-        res.status(400).json({error:'Invalid short code format'})
+        return res.status(400).json({error:'Invalid short code format'})
     }
     next();
 }
