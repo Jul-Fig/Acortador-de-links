@@ -28,7 +28,7 @@ mongoose.connect(
     process.env.MONGODB_URL || 'mongodb://localhost:27017/url-shortener',
 )
 
-.then(()=> console.log('mongoDB connected successfully'))
+.then(()=> console.log('MongoDB connected successfully'))
 .catch(err => console.error('MongoDB connection error:', err))
 
 app.use('/api/shorten', urlRoutes)

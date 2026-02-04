@@ -61,7 +61,7 @@ class UrlController {
             )
 
             if(!updatedUrl){
-                res.status(404).json({error:'Short URL not found'})
+                return res.status(404).json({error:'Short URL not found'})
             }
             res.status(200).json(updatedUrl.toJSON())
         } catch (error) {  
@@ -75,7 +75,7 @@ class UrlController {
             const deletedUrl = await Url.findOneAndDelete({ shortCode }) 
 
             if(!deletedUrl){
-                res.status(404).json({error:'Short URL not found'})
+               return res.status(404).json({error:'Short URL not found'})
             }
             res.status(204).send()
         } catch(error){
@@ -94,9 +94,9 @@ class UrlController {
             res.status(200).json(url.toJSON())
 
         } catch (error) {
-            
+            next(error)
         }
-        next()
+        
     }
 }
 module.exports =new UrlController()

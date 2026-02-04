@@ -31,11 +31,9 @@ const urlSchema =   new mongoose.Schema({
         type:Date,
         default: Date.now
     }
-})
+},{
 
-urlSchema.pre('save', function(next){
-    this.set({updatedAt: Date.now()})
-    next()
+ timestamps: true 
 })
 
 urlSchema.methods.toJSON = function(){

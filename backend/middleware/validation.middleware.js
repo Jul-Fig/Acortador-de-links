@@ -2,11 +2,11 @@ function validateUrl(req,res,next){
     const {url}= req.body
 
     if(!url){
-        res.status(400).json({error:'URL is required'})
+       return res.status(400).json({ error:'URL is required'})
     }
 
    if(typeof url !=='string' || url.trim().length ===0){
-    res.status(400).json({error:'URL must be a non-empty string'})
+    return res.status(400).json({error:'URL must be a non-empty string'})
    }
 
    const urlPattern =/^https?:\/\/.+\..+/

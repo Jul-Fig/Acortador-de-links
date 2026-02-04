@@ -1,1 +1,9 @@
+# Variables de entorno
 .env
+.env*
+backend/.env
+backend/.env*
+
+# PERMITIR ejemplos
+!.env.example
+!backend/.env.example
