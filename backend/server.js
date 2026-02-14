@@ -24,13 +24,13 @@ app.use('/api', limiter)
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-mongoose.connect(
-    process.env.MONGODB_URL || 'mongodb://localhost:27017/url-shortener',
-)
-
-.then(()=> console.log('MongoDB connected successfully'))
-.catch(err => console.error('MongoDB connection error:', err))
-
+if (process.env.NODE_ENV !== 'test') {
+    mongoose.connect(
+        process.env.MONGODB_URL || 'mongodb://localhost:27017/url-shortener',
+    )
+    .then(() => console.log('MongoDB connected successfully'))
+    .catch(err => console.error('MongoDB connection error:', err))
+}
 app.use('/api/shorten', urlRoutes)
 app.get('/api/health', (req,res)=>{
     res.status(200).json({
@@ -44,8 +44,10 @@ app.use((req,res)=>{
 })
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, ()=>{
-    console.log(`Server running on port http://localhost:${PORT}`); 
-})
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`Server running on port http://localhost:${PORT}`);
+    })
+}
 
 module.exports = app
