@@ -1,0 +1,52 @@
+<div class="url-item">
+  @if(!isEditing()) {
+    <!-- Modo de visualización -->
+    <div class="url-info">
+      <div class="url-details">
+        <p class="original-url">
+          <strong>Original: </strong> 
+          <a [href]="url().url" target="_blank">{{ url().url }}</a>
+        </p>
+        <p class="short-url">
+          <strong>Corta: </strong> 
+          <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
+        </p>
+        <p class="stats">
+          <span>Visitas: {{ url().accessCount }}</span>
+          <span>Creada: {{ url().createdAt | date:'short' }}</span>
+        </p>
+      </div>
+
+      <div class="actions">
+        <button (click)="copyToClipboard()" class="btn-copy">
+          📋 Copiar
+        </button>
+        <button (click)="startEdit()" class="btn-edit">
+          ✏️ Editar
+        </button>
+        <button (click)="deletedUrl()" [disabled]="loading()" class="btn-delete">
+          🗑️ Eliminar
+        </button>
+      </div>
+    </div>
+  } @else {
+    <!-- Modo de edición -->
+    <div class="url-edit">
+      <input
+        type="url"
+        [(ngModel)]="editUrl"
+        [disabled]="loading()"
+        placeholder="Nueva URL"
+      />
+      
+      <div class="edit-actions">
+        <button (click)="saveEdit()" [disabled]="loading()" class="btn-save">
+          ✓ Guardar
+        </button>
+        <button (click)="cancelEdit()" [disabled]="loading()" class="btn-cancel">
+          ✗ Cancelar
+        </button>
+      </div>
+    </div>
+  }
+</div>

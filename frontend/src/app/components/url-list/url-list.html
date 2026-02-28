@@ -1,0 +1,17 @@
+<div class="url-list">
+    <h2>Url creadas</h2>
+
+    @if(urls().length === 0){
+        <p class="empty-message">No hay URLs creadas aún</p>
+    } @else{
+        <div class="list">
+            @for(url of urls(); track url.shortCode){
+                <app-url-item
+                [url]="url"
+                (deleted)="onDelete($event)"
+                (updated)="onUpdated($event)"
+                />
+            }
+        </div>
+    }
+</div>

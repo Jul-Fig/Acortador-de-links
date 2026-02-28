@@ -1,0 +1,30 @@
+<div class="url-form">
+    <h2>Acortar de Link</h2>
+
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <input 
+            type="url"
+            [(ngModel)]="urlInput"
+            name="url"
+            placeholder="http://ejemplo.com/url-larga"
+            [disabled]="loading()"
+            required
+            />
+
+            <button 
+            type="submit"
+            [disabled]="loading() || !urlInput().trim()"
+            >
+            @if(loading()){
+                <span>Creando...</span>
+            } @else{
+                <span>acortar</span>
+            }                
+            </button>
+        </div>
+@if(error()){
+<p class="error">{{error()}}</p>
+}
+    </form>
+</div>
