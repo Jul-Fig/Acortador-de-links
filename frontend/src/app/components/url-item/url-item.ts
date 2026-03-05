@@ -24,7 +24,7 @@ editUrl = signal<string>('')
 loading = signal<boolean>(false)
 
 get shortUrl():string {
-  return `http://localhost:3000/${this.url().shortCode}`
+  return `http://localhost:3000/${this.url().shortCode}/redirect`
 }
 
 startEdit(): void{

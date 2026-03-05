@@ -10,6 +10,8 @@ router.post('/',validateUrl,UrlController.createShortUrl)
 
 router.get('/:shortCode',validateShortCode,UrlController.getUrl)
 
+router.get('/:shortCode/redirect', validateShortCode, UrlController.redirectUrl)
+
 router.put('/:shortCode',validateShortCode,validateUrl,UrlController.updateUrl)
 
 router.delete('/:shortCode',validateShortCode,UrlController.deleteUrl)

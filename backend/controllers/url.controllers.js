@@ -44,11 +44,26 @@ class UrlController {
            return res.status(404).json({error:'Short URL not found'})
         }
         res.status(200).json(url.toJSON())
+        
     } catch (error) {
         next (error)
     }
 }
 
+async redirectUrl(req, res, next) {
+    try {
+        const { shortCode } = req.params
+        const url = await Url.findOneAndUpdate(
+            { shortCode },
+            { $inc: { accessCount: 1 } },
+            { new: true }
+        )
+        if (!url) return res.status(404).json({ error: 'Short URL not found' })
+        res.redirect(301, url.url)
+    } catch (error) {
+        next(error)
+    }
+}
     async updateUrl (req,res,next){
         try {
             const {shortCode}=req.params
