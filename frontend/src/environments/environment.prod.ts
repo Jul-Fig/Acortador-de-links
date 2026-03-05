@@ -1,4 +1,4 @@
 export const environments = {
     production: true,
-    apiUrl
+    apiUrl: 'https://acortador-de-links.onrender.com'
 }
