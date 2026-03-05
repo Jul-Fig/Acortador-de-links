@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 export class UrlService {
   private http=inject(HttpClient)
 
-  private apiUrl= 'http://localhost:3000/api/shorten'
+  private apiUrl= 'https://acortador-de-links.onrender.com'
 
   CreateShortUrl(originalUrl:string): Observable<Url>{
     return this.http.post<Url>(this.apiUrl, {url:originalUrl} )
