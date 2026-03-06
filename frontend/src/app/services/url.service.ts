@@ -3,6 +3,7 @@ import { Url, ApiError } from '../models/url.interface'
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../environments/environment'
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import { catchError } from 'rxjs/operators';
 export class UrlService {
   private http=inject(HttpClient)
 
-  private apiUrl= 'https://acortador-de-links.onrender.com'
+  private apiUrl= environment.apiUrl
 
   CreateShortUrl(originalUrl:string): Observable<Url>{
     return this.http.post<Url>(this.apiUrl, {url:originalUrl} )

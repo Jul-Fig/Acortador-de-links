@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Url } from '../../models/url.interface';
 import { UrlService } from '../../services/url.service';
-
+import { environment } from '../../environments/environment'
 @Component({
   selector: 'app-url-item',
   imports: [FormsModule, DatePipe],
@@ -24,7 +24,7 @@ editUrl = signal<string>('')
 loading = signal<boolean>(false)
 
 get shortUrl():string {
-  return `http://localhost:3000/${this.url().shortCode}/redirect`
+  return `{environment.apiUrl}/${this.url().shortCode}/redirect`
 }
 
 startEdit(): void{
