@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { Url } from '../../models/url.interface';
 import { UrlService } from '../../services/url.service';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment.prod.ts'
 @Component({
   selector: 'app-url-item',
   imports: [FormsModule, DatePipe],
