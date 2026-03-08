@@ -1,3 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
 
 @import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  --sage: #8FAF9F;
+  --sage-light: #B8D0C6;
+  --sage-dark: #5C8070;
+  --blush: #E8C4B8;
+  --blush-dark: #D4907A;
+  --cream: #FAF7F2;
+  --sand: #F0E8DC;
+  --sand-dark: #DDD0BE;
+  --stone: #6B6560;
+  --stone-light: #9C9490;
+  --charcoal: #2D2926;
+  --white: #FFFFFF;
+
+  --shadow-soft: 0 2px 20px rgba(45, 41, 38, 0.08);
+  --shadow-card: 0 4px 32px rgba(45, 41, 38, 0.10);
+  --shadow-hover: 0 8px 40px rgba(45, 41, 38, 0.14);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  min-height: 100vh;
+}
+
+

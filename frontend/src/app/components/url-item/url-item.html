@@ -1,50 +1,56 @@
 <div class="url-item">
   @if(!isEditing()) {
-    <!-- Modo de visualización -->
     <div class="url-info">
       <div class="url-details">
-        <p class="original-url">
-          <strong>Original: </strong> 
-          <a [href]="url().url" target="_blank">{{ url().url }}</a>
-        </p>
-        <p class="short-url">
-          <strong>Corta: </strong> 
-          <a [href]="shortUrl" target="_blank">{{ shortUrl }}</a>
-        </p>
-        <p class="stats">
-          <span>Visitas: {{ url().accessCount }}</span>
-          <span>Creada: {{ url().createdAt | date:'short' }}</span>
-        </p>
+        <div class="url-row">
+          <span class="url-label original">Original</span>
+          <a [href]="url().url" target="_blank" class="url-link">{{ url().url }}</a>
+        </div>
+        <div class="url-row">
+          <span class="url-label short">Corta</span>
+          <a [href]="shortUrl" target="_blank" class="url-link short-link">{{ shortUrl }}</a>
+        </div>
+        <div class="url-meta">
+          <span class="meta-chip">
+            <span>👁</span>
+            {{ url().accessCount }} visitas
+          </span>
+          <span class="meta-chip">
+            <span>📅</span>
+            {{ url().createdAt | date:'dd MMM yyyy' }}
+          </span>
+        </div>
       </div>
 
       <div class="actions">
-        <button (click)="copyToClipboard()" class="btn-copy">
-          📋 Copiar
+        <button (click)="copyToClipboard()" class="btn btn-copy" title="Copiar">
+          📋
         </button>
-        <button (click)="startEdit()" class="btn-edit">
-          ✏️ Editar
+        <button (click)="startEdit()" class="btn btn-edit" title="Editar">
+          ✏️
         </button>
-        <button (click)="deletedUrl()" [disabled]="loading()" class="btn-delete">
-          🗑️ Eliminar
+        <button (click)="deletedUrl()" [disabled]="loading()" class="btn btn-delete" title="Eliminar">
+          🗑️
         </button>
       </div>
     </div>
   } @else {
-    <!-- Modo de edición -->
     <div class="url-edit">
-      <input
-        type="url"
-        [(ngModel)]="editUrl"
-        [disabled]="loading()"
-        placeholder="Nueva URL"
-      />
-      
+      <span class="edit-label">Editar</span>
+      <div class="edit-input-wrapper">
+        <input
+          type="url"
+          [(ngModel)]="editUrl"
+          [disabled]="loading()"
+          placeholder="Nueva URL"
+        />
+      </div>
       <div class="edit-actions">
-        <button (click)="saveEdit()" [disabled]="loading()" class="btn-save">
+        <button (click)="saveEdit()" [disabled]="loading()" class="btn btn-save">
           ✓ Guardar
         </button>
-        <button (click)="cancelEdit()" [disabled]="loading()" class="btn-cancel">
-          ✗ Cancelar
+        <button (click)="cancelEdit()" [disabled]="loading()" class="btn btn-cancel">
+          Cancelar
         </button>
       </div>
     </div>

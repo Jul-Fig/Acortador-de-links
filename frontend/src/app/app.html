@@ -1,18 +1,23 @@
-<div class="container">
-  <header>
-    <h1>🔗 Acortador de URLs</h1>
-    <p>Crea, administra y comparte URLs cortas</p>
-  </header>
+<div class="app-wrapper">
+  <div class="container">
+    <header>
+      <div class="header-badge">
+        <span>✦</span> Herramienta de links
+      </div>
+      <h1>Acortador de <span>URLs</span></h1>
+      <p>Crea, administra y comparte tus enlaces de forma simple</p>
+    </header>
 
-  <main>
-    <app-url-form (urlCreated)="onUrlCreated($event)" />
-    
-    <app-url-list 
-      [urls]="urls()"
-      (urlDeleted)="onUrlDeleted($event)"
-      (urlUpdated)="onUrlUpdated($event)"
-    />
-  </main>
+    <main>
+      <app-url-form (urlCreated)="onUrlCreated($event)" />
+      
+      <app-url-list 
+        [urls]="urls()"
+        (urlDeleted)="onUrlDeleted($event)"
+        (urlUpdated)="onUrlUpdated($event)"
+      />
+    </main>
+  </div>
 </div>
 
 <router-outlet />

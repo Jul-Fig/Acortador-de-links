@@ -1,17 +1,25 @@
 <div class="url-list">
-    <h2>Url creadas</h2>
+  @if(urls().length > 0) {
+    <div class="list-header">
+      <h2>Tus enlaces</h2>
+      <span class="list-count">{{ urls().length }} {{ urls().length === 1 ? 'enlace' : 'enlaces' }}</span>
+    </div>
+  }
 
-    @if(urls().length === 0){
-        <p class="empty-message">No hay URLs creadas aún</p>
-    } @else{
-        <div class="list">
-            @for(url of urls(); track url.shortCode){
-                <app-url-item
-                [url]="url"
-                (deleted)="onDelete($event)"
-                (updated)="onUpdated($event)"
-                />
-            }
-        </div>
-    }
+  @if(urls().length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">🔗</div>
+      <p>Aún no has creado ningún enlace corto</p>
+    </div>
+  } @else {
+    <div class="list">
+      @for(url of urls(); track url.shortCode) {
+        <app-url-item
+          [url]="url"
+          (deleted)="onDelete($event)"
+          (updated)="onUpdated($event)"
+        />
+      }
+    </div>
+  }
 </div>
